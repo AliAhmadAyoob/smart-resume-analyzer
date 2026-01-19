@@ -262,27 +262,27 @@ if uploaded_file:
         0.15 * scores.get("project_score", 0) +
         0.05 * scores.get("contact_score", 0)
     )
-        with col_viz:
-            st.subheader("📊 Match Analysis")
-            
-            # --- BEAUTIFIED PLOTLY DONUT ---
-            fig = go.Figure(data=[go.Pie(
-                labels=["Skills", "Experience", "Projects", "Contact"],
-                values=[scores["skills_score"], scores["experience_score"], scores["project_score"], scores["contact_score"]],
-                hole=.65,
-                marker=dict(colors=['#00D1B2', '#3273DC', '#FFDD57', '#F03D5F']),
-                hoverinfo='label+percent',
-                textinfo='none' # Keep it clean, center text handles the rest
-            )])
-            
-            fig.update_layout(
-                annotations=[dict(text=f'<b>{overall_score}%</b>', x=0.5, y=0.5, font_size=28, showarrow=False, font_color="#363636")],
-                margin=dict(t=10, b=10, l=10, r=10),
-                height=300,
-                showlegend=True,
-                legend=dict(orientation="h", yanchor="bottom", y=-0.2, xanchor="center", x=0.5)
-            )
-            st.plotly_chart(fig, use_container_width=True)
+    with col_viz:
+        st.subheader("📊 Match Analysis")
+        
+        # --- BEAUTIFIED PLOTLY DONUT ---
+        fig = go.Figure(data=[go.Pie(
+            labels=["Skills", "Experience", "Projects", "Contact"],
+            values=[scores["skills_score"], scores["experience_score"], scores["project_score"], scores["contact_score"]],
+            hole=.65,
+            marker=dict(colors=['#00D1B2', '#3273DC', '#FFDD57', '#F03D5F']),
+            hoverinfo='label+percent',
+            textinfo='none' # Keep it clean, center text handles the rest
+        )])
+        
+        fig.update_layout(
+            annotations=[dict(text=f'<b>{overall_score}%</b>', x=0.5, y=0.5, font_size=28, showarrow=False, font_color="#363636")],
+            margin=dict(t=10, b=10, l=10, r=10),
+            height=300,
+            showlegend=True,
+            legend=dict(orientation="h", yanchor="bottom", y=-0.2, xanchor="center", x=0.5)
+        )
+        st.plotly_chart(fig, use_container_width=True)
 
         # ---------------- SCORE METRICS ----------------
         st.markdown("### Breakdown by Category")
