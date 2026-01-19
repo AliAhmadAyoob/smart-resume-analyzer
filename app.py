@@ -181,21 +181,21 @@ if uploaded_file:
                     st.balloons()
     
             with tab2:
-                st.json(parsed)
-
+                    st.json(parsed)
+        if st.button("Update Resume"):
+        updated_file = build_updated_resume(parsed)
+        st.success("Resume successfully updated!")
+    
+        with open(updated_file, "rb") as f:
+            st.download_button(
+                label="Download Updated Resume",
+                data=f,
+                file_name="updated_resume.docx"
 else:
     st.warning("Please upload a resume in the sidebar to begin.")
     st.image("svg-repo.svg", width=50)
 
-if st.button("Update Resume"):
-    updated_file = build_updated_resume(parsed)
-    st.success("Resume successfully updated!")
 
-    with open(updated_file, "rb") as f:
-        st.download_button(
-            label="Download Updated Resume",
-            data=f,
-            file_name="updated_resume.docx"
         )
 
 
