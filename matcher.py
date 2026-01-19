@@ -2,7 +2,7 @@ score = {}
 feedback = []
 def match_skills_exp(jb_skills,skills):
     matched_skills = [skill for skill in skills if skill in jb_skills]
-    skill_score = (len(matched_skills)/len(jb_desc)) *100 
+    skill_score = (len(matched_skills)/len(jb_skills)) *100 
     score['skills_score']=skill_score
     missing_skills = [skill for skill in jd_skills if skill not in parsed["skills"]]
     if missing_skills:
