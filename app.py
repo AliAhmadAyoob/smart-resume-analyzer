@@ -19,7 +19,7 @@ if jb_desc:
 
     exp = extract_experience(parsed['experience'])
     
-    match_skills(jb_skill,parsed['skills'])
+    match_skills_exp(jb_skill,parsed['skills'])
     match_exp(jb_exp,exp)
     match_projects(jb_skills,parsed['projects'])
     score = contact_score(parsed)
