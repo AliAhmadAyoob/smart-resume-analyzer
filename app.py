@@ -69,7 +69,8 @@ st.markdown("""
 
 # ---------------- SIDEBAR ----------------
 with st.sidebar:
-    st.image("https://cdn-icons-png.flaticon.com/512/942/942799.png", width=250)
+    st.image("https://cdn-icons-png.flaticon.com/512/942/942799.png", width=80)
+
     st.title("Navigation")
     uploaded_file = st.file_uploader(
         "Upload your Resume (PDF or TXT)",
@@ -183,4 +184,5 @@ if uploaded_file:
 
 else:
     st.warning("Please upload a resume in the sidebar to begin.")
-    st.image("https://undraw.co/api/content/svg/resume_folder.svg", width=350)
+    st.image("https://cdn-icons-png.flaticon.com/512/942/942799.png", width=250)
+
