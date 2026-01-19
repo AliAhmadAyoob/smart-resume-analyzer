@@ -1,4 +1,5 @@
 import streamlit as st
+import matplotlib.pyplot as plt
 
 from resume_parser import parsed_resume
 from skill_extractor import extract_skills, extract_experience
@@ -7,6 +8,16 @@ from matcher import (
     match_experience,
     match_projects,
     contact_score
+)
+st.markdown(
+    f"""
+    <div style="text-align:center; padding:20px; border-radius:15px; 
+                background:#f5f7fa; margin-bottom:20px;">
+        <h2>Overall ATS Match</h2>
+        <h1 style="color:#4CAF50;">{overall_score:.2f}%</h1>
+    </div>
+    """,
+    unsafe_allow_html=True
 )
 
 # ---------------- PAGE CONFIG ----------------
@@ -81,17 +92,45 @@ if uploaded_file:
             0.15 * scores.get("project_score", 0) +
             0.05 * scores.get("contact_score", 0)
         )
-
+        labels = ["Skills", "Experience", "Projects", "Contact"]
+        values = [
+            scores["skills_score"],
+            scores["experience_score"],
+            scores["project_score"],
+            scores["contact_score"]
+        ]
+        
+        fig, ax = plt.subplots()
+        ax.pie(
+            values,
+            labels=labels,
+            autopct="%1.1f%%",
+            startangle=90,
+            wedgeprops=dict(width=0.35)
+        )
+        ax.set_title("ATS Scoring Breakdown")
+        
+        st.pyplot(fig)
+        
+        # ----- Score Cards -----
+        col1, col2, col3, col4 = st.columns(4)
+        
+        col1.metric("Skills", f"{scores['skills_score']:.1f}%")
+        col2.metric("Experience", f"{scores['experience_score']:.1f}%")
+        col3.metric("Projects", f"{scores['project_score']:.1f}%")
+        col4.metric("Contact", f"{scores['contact_score']:.1f}/10")
         # ---------------- RESULTS ----------------
-        st.subheader("Resume Analysis Results")
-        st.metric("Overall Match Score", f"{overall_score:.2f}%")
+        st.subheader("Feedback & Suggestions")
+        for fb in feedback:
+            st.write("•", fb)
 
-        st.write("### Score Breakdown")
-        st.write(scores)
 
-        st.write("### Feedback & Suggestions")
-        if feedback:
-            for fb in feedback:
-                st.write("•", fb)
+        # st.write("### Score Breakdown")
+        # st.write(scores)
+
+        # st.write("### Feedback & Suggestions")
+        # if feedback:
+        #     for fb in feedback:
+        #         st.write("•", fb)
         else:
             st.success("Great job! Your resume matches the job description well.")
