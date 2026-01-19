@@ -184,6 +184,7 @@ if uploaded_file:
 
 else:
     st.warning("Please upload a resume in the sidebar to begin.")
-    st.image("https://res.cloudinary.com/dhqxovvve/image/upload/v1709883500/resume_review_illustration.png", width=350)
+    st.image("st.image("https://res.cloudinary.com/dhqxovvve/image/upload/v1709883868/job_app_review.png", width=350)
+
 
 
