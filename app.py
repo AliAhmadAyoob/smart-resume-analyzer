@@ -184,7 +184,7 @@ if uploaded_file:
 
 else:
     st.warning("Please upload a resume in the sidebar to begin.")
-    st.image("svg-repo.svg", width=350)
+    st.image("svg-repo.svg", width=50)
 
 
 
