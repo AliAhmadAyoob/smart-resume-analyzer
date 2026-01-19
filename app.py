@@ -182,15 +182,18 @@ if uploaded_file:
     
             with tab2:
                     st.json(parsed)
-        if st.button("Update Resume"):
-            updated_file = build_updated_resume(parsed)
-            st.success("Resume successfully updated!")
+    if st.button("Update Resume"):
+        st.session_state.updated_file = build_updated_resume(parsed)
+        st.success("Resume successfully updated!")
     
-        with open(updated_file, "rb") as f:
+    if "updated_file" in st.session_state:
+        with open(st.session_state.updated_file, "rb") as f:
             st.download_button(
                 label="Download Updated Resume",
                 data=f,
-                file_name="updated_resume.docx")
+                file_name="updated_resume.docx",
+                mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+            )
 else:
     st.warning("Please upload a resume in the sidebar to begin.")
     st.image("svg-repo.svg", width=50)
