@@ -55,7 +55,7 @@ st.markdown("""
 
      /* Enhanced fix for truncation and alignment */
     [data-testid="stMetricValue"] {
-        font-size: 1.6rem !important;
+        font-size: 1.2rem !important;
         font-weight: 700 !important;
         color: #31333F;
     }
