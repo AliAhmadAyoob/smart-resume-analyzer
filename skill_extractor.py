@@ -29,6 +29,8 @@ def extract_skills(resume_text):
     return list(set(found_skills))
 
 def extract_experience(jd_text):
+    if isinstance(jd_text, list):
+        jd_text = " ".join(jd_text)
     jd_text = jd_text.lower()
     patterns = [
         r'(\d+)\s*-\s*(\d+)\s*years',  
