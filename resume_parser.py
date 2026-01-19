@@ -5,12 +5,12 @@ from skill_extractor import extract_skills,skills_db
 from utils import clean_text
 def text_extractor(file):
     text = ""
-    if file.endswith('.pdf'):
+    if file.name.endswith('.pdf'):
         with pd.open(file) as pdf:
             for page in pdf.pages:
                 if page.extract_text():
                     text += page.extract_text() +'\n'
-    elif file.endswith('.docx'):
+    elif file.name.endswith('.docx'):
         doc = docx.Document(file)
         for para in doc.paragraphs:
             text += para.text+'\n'
