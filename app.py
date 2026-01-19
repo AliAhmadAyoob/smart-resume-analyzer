@@ -1,5 +1,5 @@
 from resume_parser import parsed_resume
-from matcher import match_skills,match_exp,contact_score
+from matcher import match_skills_exp,match_exp,contact_score
 from skills_extractor import extract_skills,extract_experience_from_jd
 import streamlit as st
 
