@@ -9,16 +9,7 @@ from matcher import (
     match_projects,
     contact_score
 )
-st.markdown(
-    f"""
-    <div style="text-align:center; padding:20px; border-radius:15px; 
-                background:#f5f7fa; margin-bottom:20px;">
-        <h2>Overall ATS Match</h2>
-        <h1 style="color:#4CAF50;">{overall_score:.2f}%</h1>
-    </div>
-    """,
-    unsafe_allow_html=True
-)
+
 
 # ---------------- PAGE CONFIG ----------------
 st.set_page_config(
@@ -92,6 +83,16 @@ if uploaded_file:
             0.15 * scores.get("project_score", 0) +
             0.05 * scores.get("contact_score", 0)
         )
+        st.markdown(
+        f"""
+        <div style="text-align:center; padding:20px; border-radius:15px; 
+                    background:#f5f7fa; margin-bottom:20px;">
+            <h2>Overall ATS Match</h2>
+            <h1 style="color:#4CAF50;">{overall_score:.2f}%</h1>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
         labels = ["Skills", "Experience", "Projects", "Contact"]
         values = [
             scores["skills_score"],
