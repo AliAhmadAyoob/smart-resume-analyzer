@@ -151,11 +151,11 @@ if uploaded_file:
             m1, m2, m3, m4 = st.columns(4)
             
             # We calculate the "delta" (difference from 100) to show how much room for improvement exists
-            m1.metric(label="Skills Match", value=f"{scores['skills_score']}%", delta=f"{scores['skills_score'] - 100}%")
-            m2.metric(label="Experience Match", value=f"{scores['experience_score']}%", delta=f"{scores['experience_score'] - 100}%")
-            m3.metric(label="Project Match", value=f"{scores['project_score']}%", delta=f"{scores['project_score'] - 100}%")
-            m4.metric(label="Contact Details", value=f"{scores['contact_score']}%", delta=f"{scores['contact_score'] - 100}%")
-    
+            m1.metric("Skills", f"{scores['skills_score']:.2f}%")
+            m2.metric("Experience", f"{scores['experience_score']:.2f}%")
+            m3.metric("Projects", f"{scores['project_score']:.2f}%")
+            m4.metric("Contact", f"{scores['contact_score']:.2f}/10")
+
             # ---------------- FEEDBACK TABS ----------------
             st.markdown("<br>", unsafe_allow_html=True)
             tab1, tab2 = st.tabs(["💡 Improvement Tips", "📄 Data Preview"])
