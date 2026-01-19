@@ -1,6 +1,6 @@
 from resume_parser import parsed_resume
 from matcher import match_skills_exp,match_exp,contact_score
-from skills_extractor import extract_skills,extract_experience
+from skill_extractor import extract_skills,extract_experience
 import streamlit as st
 
 st.set_page_config(page_title="Smart Resume Analyzer", layout="wide")
