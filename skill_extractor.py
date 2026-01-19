@@ -1,3 +1,4 @@
+import re
 skills_db = {
     "Python": ["python", "py"],
     "Java": ["java"],
