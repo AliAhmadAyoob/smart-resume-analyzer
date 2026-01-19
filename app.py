@@ -184,5 +184,6 @@ if uploaded_file:
 
 else:
     st.warning("Please upload a resume in the sidebar to begin.")
-    st.image("https://cdn-icons-png.flaticon.com/512/942/942799.png", width=250)
+    st.image("https://res.cloudinary.com/dhqxovvve/image/upload/v1709883500/resume_review_illustration.png", width=350)
+250)
 
