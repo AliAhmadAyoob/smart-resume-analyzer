@@ -69,7 +69,7 @@ st.markdown("""
 
 # ---------------- SIDEBAR ----------------
 with st.sidebar:
-    st.image("https://cdn-icons-png.flaticon.com/512/942/942799.png", width=80)
+    st.image("https://cdn-icons-png.flaticon.com/512/942/942799.png", width=250)
     st.title("Navigation")
     uploaded_file = st.file_uploader(
         "Upload your Resume (PDF or TXT)",
