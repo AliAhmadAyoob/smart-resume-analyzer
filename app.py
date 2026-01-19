@@ -34,11 +34,12 @@ if uploaded_file:
     st.subheader("Candidate Information")
     st.write("**Name:**", parsed.get("name", "N/A"))
 
-    # ---------------- JOB DESCRIPTION ----------------
-    jb_desc = st.text_area(
-        "Paste the Job Description here",
-        height=250
-    )
+        # ---------------- JOB DESCRIPTION ----------------
+    col1, col2 = st.columns([1, 2])
+    
+    with col1:
+        jb_desc = st.text_area("Paste the Job Description here", height=120)
+
 
     if jb_desc:
         # -------- Extract JD info --------
@@ -101,7 +102,7 @@ if uploaded_file:
             scores["contact_score"]
         ]
         
-        fig, ax = plt.subplots()
+        fig, ax = plt.subplots(figsize=(4, 4))
         ax.pie(
             values,
             labels=labels,
