@@ -16,5 +16,4 @@ def clean_text(text):
 
     cleaned_text = ' '.join([w for w in words if (w not in stop_words or w in words_to_retain) and w not in unwanted])
     cleaned_text = re.sub(r'\s+',' ',cleaned_text).strip()
-
     return cleaned_text    
