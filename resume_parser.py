@@ -70,7 +70,7 @@ def extract_projects(text):
 
     return projects
 
-def parse_resume(file,skills_db=skills_db):
+def parsed_resume(file,skills_db=skills_db):
     text = text_extractor(file)
     cleaned_text = clean_text(text)
     parsed = {
