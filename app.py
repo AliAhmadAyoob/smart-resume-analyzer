@@ -52,6 +52,13 @@ st.markdown("""
         white-space: pre-wrap;
         font-weight: 600;
     }
+
+    /* This targets the metric value specifically to prevent truncation */
+    [data-testid="stMetricValue"] {
+        font-size: 1.8rem !important;
+        overflow-wrap: break-word;
+        white-space: nowrap;
+    }
     </style>
     """, unsafe_allow_html=True)
 
