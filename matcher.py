@@ -1,39 +1,54 @@
-score = {}
-feedback = []
-def match_skills_exp(jb_skills,skills):
-    matched_skills = [skill for skill in skills if skill in jb_skills]
-    skill_score = (len(matched_skills)/len(jb_skills)) *100 
-    score['skills_score']=skill_score
-    missing_skills = [skill for skill in jd_skills if skill not in parsed["skills"]]
-    if missing_skills:
-        feedback.append(f"Add missing skills: {missing_skills}")
+def match_skills(jb_skills, resume_skills):
+    jb = set(skill.lower() for skill in jb_skills)
+    rs = set(skill.lower() for skill in resume_skills)
 
-def match_exp(jb_exp,exp):
-    if exp is None or exp == '0' or exp == 0:
-        score['expreience_score'] = 0 
-    elif exp >= jb_exp:
-        score['expreience_score'] = 100
+    matched = jb.intersection(rs)
+    missing = jb - rs
+
+    score = (len(matched) / len(jb)) * 100 if jb else 0
+
+    feedback = []
+    if missing:
+        feedback.append(f"Add missing skills: {', '.join(missing)}")
+
+    return score, feedback
+def match_experience(jb_exp, resume_exp):
+    feedback = []
+
+    try:
+        jb_exp = int(jb_exp)
+        resume_exp = int(resume_exp)
+    except:
+        return 0, ["Experience not clearly mentioned"]
+
+    if resume_exp >= jb_exp:
+        return 100, []
     else:
-        score['expreience_score'] = (exp / jb_exp) * 100
-        feedback.append(f"Gain more experience: {required_exp_months//12} years required")
-
-def match_projects(jb_desc , projects):
+        score = (resume_exp / jb_exp) * 100
+        feedback.append(f"Gain at least {jb_exp - resume_exp} more years of experience")
+        return score, feedback
+def match_projects(jd_keywords, projects):
+    feedback = []
     matched = 0
-    num_required_projects = 3
-    for project in projects.lower():
-        for keyword in jd_desc:
-            if keyword.lower() in project:
-                matched +=1
-                break
-    project_score = min((matched_projects / num_required_projects) * 100, 100)
-    score['project_score'] = project_score
-    if matched_projects < num_required_projects:
-        feedback.append(f"Add more projects related to: {', '.join(jd_project_keywords)}")
+    required = 3
 
+    projects_text = " ".join(projects).lower()
+
+    for kw in jd_keywords:
+        if kw.lower() in projects_text:
+            matched += 1
+
+    score = min((matched / required) * 100, 100)
+
+    if matched < required:
+        feedback.append("Add more relevant projects related to the job description")
+
+    return score, feedback
 def contact_score(parsed):
-    contact_score = 10 if parsed["contact"]["email"] and parsed["contact"]["phone"] else 0
-    score['contact_score'] = contact_score
-    if not parsed["contact"]["email"] or not parsed["contact"]["phone"]:
-        feedback.append(f"Include email and phone number")
+    feedback = []
+    score = 10 if parsed.get("contact", {}).get("email") and parsed.get("contact", {}).get("phone") else 0
 
-    return score
+    if score == 0:
+        feedback.append("Include both email and phone number")
+
+    return score, feedback
