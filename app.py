@@ -40,7 +40,7 @@ if uploaded_file:
     with col1:
         jb_desc = st.text_area("Paste the Job Description here", height=120)
 
-
+    
     if jb_desc:
         # -------- Extract JD info --------
         jb_skills = extract_skills(jb_desc)
@@ -101,18 +101,18 @@ if uploaded_file:
             scores["project_score"],
             scores["contact_score"]
         ]
-        
-        fig, ax = plt.subplots(figsize=(4, 4))
-        ax.pie(
-            values,
-            labels=labels,
-            autopct="%1.1f%%",
-            startangle=90,
-            wedgeprops=dict(width=0.35)
-        )
-        ax.set_title("ATS Scoring Breakdown")
-        
-        st.pyplot(fig)
+        with col2:
+            fig, ax = plt.subplots(figsize=(4, 4))
+            ax.pie(
+                values,
+                labels=labels,
+                autopct="%1.1f%%",
+                startangle=90,
+                wedgeprops=dict(width=0.35)
+            )
+            ax.set_title("ATS Scoring Breakdown")
+            
+            st.pyplot(fig)
         
         # ----- Score Cards -----
         col1, col2, col3, col4 = st.columns(4)
