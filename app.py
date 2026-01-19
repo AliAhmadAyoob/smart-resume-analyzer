@@ -53,12 +53,17 @@ st.markdown("""
         font-weight: 600;
     }
 
-    /* This targets the metric value specifically to prevent truncation */
+     /* Enhanced fix for truncation and alignment */
     [data-testid="stMetricValue"] {
-        font-size: 1.8rem !important;
-        overflow-wrap: break-word;
-        white-space: nowrap;
+        font-size: 1.6rem !important;
+        font-weight: 700 !important;
+        color: #31333F;
     }
+    
+    [data-testid="stMetricLabel"] {
+        font-size: 0.85rem !important;
+        color: #555e6d;
+}
     </style>
     """, unsafe_allow_html=True)
 
