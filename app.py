@@ -222,46 +222,46 @@ if uploaded_file:
         jb_desc = st.text_area("Paste the requirements here", height=280, placeholder="Enter skills, qualifications, and responsibilities...")
         
     jb_skills = extract_skills(jb_desc)
-        jb_exp = extract_experience(jb_desc)
+    jb_exp = extract_experience(jb_desc)
 
-        # -------- Extract Resume info --------
-        resume_skills = parsed.get("skills", [])
-        resume_projects = parsed.get("projects", [])
+    # -------- Extract Resume info --------
+    resume_skills = parsed.get("skills", [])
+    resume_projects = parsed.get("projects", [])
 
-        # Convert experience list → string → number
-        resume_exp_text = " ".join(parsed.get("experience", []))
-        resume_exp = extract_experience(resume_exp_text)
+    # Convert experience list → string → number
+    resume_exp_text = " ".join(parsed.get("experience", []))
+    resume_exp = extract_experience(resume_exp_text)
 
-        scores = {}
-        feedback = []
+    scores = {}
+    feedback = []
 
-        # -------- Skill Matching --------
-        s, f = match_skills(jb_skills, resume_skills)
-        scores["skills_score"] = s
-        feedback.extend(f)
+    # -------- Skill Matching --------
+    s, f = match_skills(jb_skills, resume_skills)
+    scores["skills_score"] = s
+    feedback.extend(f)
 
-        # -------- Experience Matching --------
-        s, f = match_experience(jb_exp, resume_exp)
-        scores["experience_score"] = s
-        feedback.extend(f)
+    # -------- Experience Matching --------
+    s, f = match_experience(jb_exp, resume_exp)
+    scores["experience_score"] = s
+    feedback.extend(f)
 
-        # -------- Project Matching --------
-        s, f = match_projects(jb_skills, resume_projects)
-        scores["project_score"] = s
-        feedback.extend(f)
+    # -------- Project Matching --------
+    s, f = match_projects(jb_skills, resume_projects)
+    scores["project_score"] = s
+    feedback.extend(f)
 
-        # -------- Contact Info --------
-        s, f = contact_score(parsed)
-        scores["contact_score"] = s
-        feedback.extend(f)
+    # -------- Contact Info --------
+    s, f = contact_score(parsed)
+    scores["contact_score"] = s
+    feedback.extend(f)
 
-        # -------- Overall Score --------
-        overall_score = (
-            0.5 * scores.get("skills_score", 0) +
-            0.3 * scores.get("experience_score", 0) +
-            0.15 * scores.get("project_score", 0) +
-            0.05 * scores.get("contact_score", 0)
-        )
+    # -------- Overall Score --------
+    overall_score = (
+        0.5 * scores.get("skills_score", 0) +
+        0.3 * scores.get("experience_score", 0) +
+        0.15 * scores.get("project_score", 0) +
+        0.05 * scores.get("contact_score", 0)
+    )
         with col_viz:
             st.subheader("📊 Match Analysis")
             
